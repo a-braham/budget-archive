@@ -17,6 +17,7 @@ django-graphql-auth==0.3.11
 django-graphql-jwt==0.3.0
 django-heroku==0.3.1
 docopt==0.6.2
+fastdiff==0.2.0
 graphene==2.1.8
 graphene-django==2.12.1
 graphql-core==2.3.2
@@ -48,11 +49,14 @@ requests==2.24.0
 Rx==3.1.1
 singledispatch==3.4.0.3
 six==1.15.0
+snapshottest==0.5.1
 sqlparse==0.3.1
+termcolor==1.1.0
 toml==0.10.0
 typed-ast==1.4.1
 urllib3==1.25.9
 virtualenv==16.7.9
+wasmer==0.4.1
 wcwidth==0.1.9
 whitenoise==5.1.0
 wrapt==1.11.2
