@@ -1,0 +1,29 @@
+
+language: python
+
+python:
+  - "3.6.7"
+
+addons:
+  postgresql: "9.4"
+
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+
+before_script:
+  - psql -c "CREATE USER budgeter WITH PASSWORD 'budget';" -U postgres
+  - psql -c "ALTER ROLE budgeter SET client_encoding TO 'utf8';" -U postgres
+  - psql -c "ALTER ROLE budgeter SET default_transaction_isolation TO 'read committed';" -U postgres
+  - psql -c "ALTER ROLE budgeter SET timezone TO 'UTC';" -U postgres
+  - psql -c "CREATE DATABASE budget;" -U postgres
+  - psql -c "GRANT ALL PRIVILEGES ON DATABASE budget TO budgeter;" -U postgres
+
+script:
+- python manage.py makemigrations
+- python manage.py migrate
+- coverage run --source='.' manage.py test
+- coverage report 
+
+after_success:
+  - coveralls
