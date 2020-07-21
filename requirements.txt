@@ -18,7 +18,7 @@ django-graphql-jwt==0.3.0
 django-heroku==0.3.1
 docopt==0.6.2
 graphene==2.1.8
-graphene-django==2.10.1
+graphene-django==2.12.1
 graphql-core==2.3.2
 graphql-relay==2.0.1
 gunicorn==20.0.4
