@@ -13,7 +13,6 @@ mutation CreateAccount($name: String!, $institution: String!, $type: String!, $n
       amount,
       number,
       description,
-      createdAt,
       user {
         id,
         username,
