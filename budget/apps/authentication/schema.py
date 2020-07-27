@@ -25,14 +25,9 @@ class CreateUser(graphene.Mutation):
   class Meta:
     user = graphene.Field(UserType)
 
-  def mutate(self, info, username, email, phone_number, password, **kwargs):
-    user = User(
-      username = username,
-      email = email,
-      phone_number = phone_number,
-      **kwargs
-    )
-    user.set_password(password)
+  def mutate(self, info, **kwargs):
+    user = User(**kwargs)
+    user.set_password(kwargs.get('password'))
     user.save()
 
     return CreateUser(user=user)
