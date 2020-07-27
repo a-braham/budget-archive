@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
     'budget.apps.authentication',
     'budget.apps.profiles',
+    'budget.apps.accounts',
     'budget.apps.budget',
     'budget.apps.categories',
 ]
@@ -90,6 +91,7 @@ GRAPHQL_AUTH = {
     'REGISTER_MUTATION_FIELDS': ['email', 'username', 'phone_number'],
     'REGISTER_MUTATION_FIELDS_OPTIONAL': ['first_name', 'middle_name', 'last_name'],
     'ALLOW_LOGIN_NOT_VERIFIED': False,
+    'LOGIN_ALLOWED_FIELDS': ['email', 'username'],
 }
 
 GRAPHQL_JWT = {

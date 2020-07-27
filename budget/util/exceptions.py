@@ -1,8 +1,16 @@
 from django.utils.translation import gettext as _
 
-class WrongUsage(GraphQLAuthError):
-    """
-    internal exception
-    """
+from graphql import GraphQLError as BaseGraphQLError
 
-    default_message = _("Wrong usage, check your code!.")
+
+class GraphQLError(BaseGraphQLError):
+    message = _("An error occurred")
+
+    def __init__(self, message=None, *args, **kwargs):
+        if message is None:
+            message = self.message
+        super(GraphQLError, self).__init__(message, *args, **kwargs)
+
+
+class PermissionDenied(GraphQLError):
+    message = _("You do not have permission to perform this action.")
