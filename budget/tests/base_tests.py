@@ -18,6 +18,8 @@ class BaseTest(TestCase):
     def snapshot(self, request_string, context=None, variables=None):
         if context is None:
             context = {}
+        if variables is None:
+            variables = {}
         graphql_response = self.client.execute(
             request_string,
             variables=variables,
