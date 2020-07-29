@@ -1,3 +1,30 @@
+CREATE_USER = """
+mutation CreateUser(
+  $email: String!, $username: String!,
+  $phone_number: String!, $first_name: String!,
+  $last_name: String!, $password: String!
+  ){ register(
+    email: $email,
+    username: $username,
+    phoneNumber: $phone_number,
+    firstName: $first_name,
+    lastName: $last_name,
+    password: $password
+  ) {
+    user {
+      username,
+      email,
+      phoneNumber,
+      firstName,
+      middleName,
+      lastName,
+      isActive,
+      isVerified,
+    }
+  }
+}
+"""
+
 CREATE_MUTATION = """
 mutation CreateAccount($name: String!, $institution: String!, $type: String!, $number: String!){
   createAccount(
