@@ -8,7 +8,10 @@ import budget.apps.categories.schema
 import budget.apps.accounts.schema
 
 
-class Query(UserQuery, MeQuery, graphene.ObjectType):
+class Query(
+    UserQuery, MeQuery, graphene.ObjectType,
+    budget.apps.accounts.schema.QueryAccount,
+):
     pass
 
 
