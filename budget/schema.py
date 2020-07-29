@@ -20,7 +20,7 @@ class Mutation(
     budget.apps.budget.scheme.BudgetMutation,
     budget.apps.categories.schema.CategoryMutation,
     budget.apps.accounts.schema.AccountMutation,
-    graphene.ObjectType
+    graphene.ObjectType,
 ):
     pass
 
