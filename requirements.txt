@@ -23,7 +23,7 @@ graphene-django==2.12.1
 graphql-core==2.3.2
 graphql-relay==2.0.1
 gunicorn==20.0.4
-identify==1.4.9
+identify==1.4.25
 idna==2.10
 importlib-metadata==1.6.0
 isort==5.1.4
