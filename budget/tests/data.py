@@ -99,3 +99,69 @@ query {
   }
 }
 """
+
+CREATE_TRANSACTION = """
+mutation CreateTransaction($account: ID!, $reference: String!, $type: String!, $amount: Decimal!){
+  createTransaction(
+    accountId: $account,
+    transactionData: {
+      reference: $reference, type: $type, amount: $amount
+      }
+    ){
+    success
+    transaction {
+      reference,
+      type,
+      amount,
+      user {
+        id,
+        username,
+        email,
+        phoneNumber
+      }
+    }
+  }
+}
+"""
+UPDATE_TRANSACTION = """
+mutation UpdateTransaction($id: ID!, $reference: String!, $type: String!, $amount: Decimal!){
+  updateTransaction(
+    transactionId: $id,
+    transactionData: {
+      reference: $reference, type: $type, amount: $amount
+      }
+    ){
+    success
+    transaction {
+      reference,
+      type,
+      amount,
+      user {
+        id,
+        username,
+        email,
+        phoneNumber
+      }
+    }
+  }
+}
+"""
+ONE_TRANSACTION = """
+query QueryTransaction($id: ID!, $reference: String!){
+  transaction(transactionId: $id) {
+      reference
+  }
+  otherDetails: transaction(transactionReference: $reference) {
+      type
+      amount,
+  }
+}
+"""
+ALL_TRANSACTIONS = """
+query {
+  allTransactions {
+    id,
+    reference
+  }
+}
+"""
