@@ -11,34 +11,37 @@ class Transaction(models.Model):
     """
     Model class for transactions
     """
-    description = models.CharField(max_length=500, null=True, blank=True)
+
+    reference = models.CharField(max_length=100, unique=True)
     type = models.CharField(max_length=100, null=False, blank=False)
-    reference = models.CharField(max_length=100, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        max_length=100,
+        null=False,
+        blank=False,
+        default=0.0,
+    )
+    description = models.CharField(max_length=500, null=True, blank=True)
     user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='transaction_user'
+        User, on_delete=models.CASCADE, related_name="tr_user"
     )
     category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        related_name='transaction_category'
+        Category, on_delete=models.CASCADE,
+        related_name="tr_category", null=True
     )
-
     account = models.ForeignKey(
-        Transaction, on_delete=models.CASCADE,
-        related_name='transaction_account'
+        Account, on_delete=models.CASCADE,
+        related_name="tr_account", null=True
     )
     budget = models.ForeignKey(
-        Budget,
-        on_delete=models.CASCADE,
-        related_name='transaction_budget'
+        Budget, on_delete=models.CASCADE, related_name="tr_budget", null=True
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = 'transactions'
+        db_table = "transactions"
 
     def __str__(self):
         """

@@ -3,7 +3,6 @@ import graphene
 from graphene_django import DjangoObjectType
 
 from .models import Account
-from budget.apps.authentication.schema import UserType
 from budget.util.decorators import permissions_classes
 from budget.util.permissions import IsAuthenticated
 
@@ -18,7 +17,7 @@ class AccountInput(graphene.InputObjectType):
     type = graphene.String(required=True)
     institution = graphene.String(required=True)
     description = graphene.String(required=False)
-    amount = graphene.String(required=False)
+    amount = graphene.Decimal(required=False)
     number = graphene.String(required=False)
 
 
@@ -33,10 +32,7 @@ class CreateAccount(graphene.Mutation):
     @permissions_classes([IsAuthenticated])
     def mutate(self, info, account_data=None):
         user = info.context.user or None
-        account = Account(
-            **account_data,
-            user=user
-        )
+        account = Account(**account_data, user=user)
         success = True
         account.save()
 
@@ -55,8 +51,8 @@ class EditAccount(graphene.Mutation):
     @permissions_classes([IsAuthenticated])
     def mutate(self, info, **kwargs):
         user = info.context.user or None
-        account = Account.objects.get(pk=kwargs.get('id'), user=user)
-        account_data = kwargs.get('account_data')
+        account = Account.objects.get(pk=kwargs.get("id"), user=user)
+        account_data = kwargs.get("account_data")
         for key, value in account_data.items():
             setattr(account, key, value)
         account.save()
@@ -71,14 +67,14 @@ class QueryAccount(object):
     account = graphene.Field(
         AccountType,
         id=graphene.ID(required=False),
-        account_number=graphene.String(required=False)
+        account_number=graphene.String(required=False),
     )
 
     @permissions_classes([IsAuthenticated])
     def resolve_account(self, info, **kwargs):
         user = info.context.user or None
-        id = kwargs.get('id')
-        account_number = kwargs.get('account_number')
+        id = kwargs.get("id")
+        account_number = kwargs.get("account_number")
 
         if id is not None:
             return Account.objects.get(pk=id, user=user)

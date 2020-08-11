@@ -14,3 +14,7 @@ class GraphQLError(BaseGraphQLError):
 
 class PermissionDenied(GraphQLError):
     message = _("You do not have permission to perform this action.")
+
+
+class TransactionError(GraphQLError):
+    message = _("Trasaction cannot be completed")

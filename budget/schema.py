@@ -6,11 +6,15 @@ import budget.apps.authentication.schema
 import budget.apps.budget.scheme
 import budget.apps.categories.schema
 import budget.apps.accounts.schema
+import budget.apps.transactions.schema
 
 
 class Query(
-    UserQuery, MeQuery, graphene.ObjectType,
+    UserQuery,
+    MeQuery,
+    graphene.ObjectType,
     budget.apps.accounts.schema.QueryAccount,
+    budget.apps.transactions.schema.QueryTransaction,
 ):
     pass
 
@@ -20,6 +24,7 @@ class Mutation(
     budget.apps.budget.scheme.BudgetMutation,
     budget.apps.categories.schema.CategoryMutation,
     budget.apps.accounts.schema.AccountMutation,
+    budget.apps.transactions.schema.TransactionMutation,
     graphene.ObjectType,
 ):
     pass
