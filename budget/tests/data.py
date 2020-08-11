@@ -101,9 +101,10 @@ query {
 """
 
 CREATE_TRANSACTION = """
-mutation CreateTransaction($account: ID!, $reference: String!, $type: String!, $amount: Decimal!){
+mutation CreateTransaction($from_account: ID!, $to_account: ID!, $reference: String!, $type: String!, $amount: Decimal!){
   createTransaction(
-    accountId: $account,
+    fromId: $from_account,
+    toId: $to_account,
     transactionData: {
       reference: $reference, type: $type, amount: $amount
       }

@@ -1,8 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from budget.apps.categories.models import Category
-from budget.apps.budget.models import Budget
-from budget.apps.accounts.models import Account
 
 User = get_user_model()
 
@@ -23,20 +20,9 @@ class Transaction(models.Model):
         default=0.0,
     )
     description = models.CharField(max_length=500, null=True, blank=True)
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="tr_user"
-    )
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE,
-        related_name="tr_category", null=True
-    )
-    account = models.ForeignKey(
-        Account, on_delete=models.CASCADE,
-        related_name="tr_account", null=True
-    )
-    budget = models.ForeignKey(
-        Budget, on_delete=models.CASCADE, related_name="tr_budget", null=True
-    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    to_account = models.IntegerField(null=False, blank=False)
+    from_account = models.IntegerField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

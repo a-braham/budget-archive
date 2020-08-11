@@ -9,6 +9,7 @@ from .data import (
 )
 from budget.apps.transactions.models import Transaction
 from budget.apps.accounts.models import Account
+from budget.apps.categories.models import Category
 
 User = get_user_model()
 
@@ -31,12 +32,17 @@ class TransactionTestCase(BaseTest):
             user=self.user,
         )
 
+        self.category = Category.objects.create(
+            name="TEST_CATEGORY", user=self.user
+        )
+
         self.transaction = Transaction.objects.create(
             reference="987654321",
             type="TEST_DEBIT",
             amount="200.0",
             user=self.user,
-            account=self.account,
+            to_account=self.account.id,
+            from_account=self.account.id,
         )
 
     def test_create_transaction_user_is_anonymous(self):
@@ -44,9 +50,10 @@ class TransactionTestCase(BaseTest):
             request_string=CREATE_TRANSACTION,
             variables={
                 "reference": "987651234",
-                "type": "DEBIT",
+                "type": "TRANSFER",
                 "amount": "2000.0",
-                "account": self.account.id,
+                "from_account": self.account.id,
+                "to_account": self.account.id,
             },
         )
 
@@ -56,9 +63,36 @@ class TransactionTestCase(BaseTest):
             context={"user": self.user},
             variables={
                 "reference": "987651234",
-                "type": "DEBIT",
+                "type": "TRANSFER",
                 "amount": "2000.0",
-                "account": self.account.id,
+                "from_account": self.account.id,
+                "to_account": self.account.id,
+            },
+        )
+
+    def test_create_transaction_income(self):
+        self.snapshot(
+            request_string=CREATE_TRANSACTION,
+            context={"user": self.user},
+            variables={
+                "reference": "987651235",
+                "type": "INCOME",
+                "amount": "2000.0",
+                "from_account": self.category.id,
+                "to_account": self.account.id,
+            },
+        )
+
+    def test_create_transaction_expense(self):
+        self.snapshot(
+            request_string=CREATE_TRANSACTION,
+            context={"user": self.user},
+            variables={
+                "reference": "987651236",
+                "type": "EXPENSE",
+                "amount": "2000.0",
+                "from_account": self.account.id,
+                "to_account": self.category.id,
             },
         )
 
@@ -83,7 +117,7 @@ class TransactionTestCase(BaseTest):
             variables={
                 "id": self.transaction.id,
                 "reference": "987651234",
-                "type": "DEBIT",
+                "type": "EXPENSE",
                 "amount": "2000.0",
             },
         )

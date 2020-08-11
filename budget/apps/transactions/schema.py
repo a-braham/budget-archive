@@ -5,10 +5,8 @@ from graphene_django import DjangoObjectType
 from .models import Transaction
 from budget.util.decorators import permissions_classes
 from budget.util.permissions import IsAuthenticated
-from budget.apps.budget.models import Budget
 from budget.apps.categories.models import Category
 from budget.apps.accounts.models import Account
-from budget.util.exceptions import TransactionError
 
 
 class TransactionInput(graphene.InputObjectType):
@@ -25,9 +23,8 @@ class TransactionType(DjangoObjectType):
 
 class CreateTransaction(graphene.Mutation):
     class Arguments:
-        category_id = graphene.ID(required=False)
-        account_id = graphene.ID(required=False)
-        budget_id = graphene.ID(required=False)
+        from_id = graphene.ID(required=True)
+        to_id = graphene.ID(required=True)
         transaction_data = TransactionInput(required=True)
 
     success = graphene.Boolean()
@@ -37,22 +34,27 @@ class CreateTransaction(graphene.Mutation):
     @permissions_classes([IsAuthenticated])
     def mutate(self, info, transaction_data=None, **kwargs):
         user = info.context.user or None
-        category_id = kwargs.get("category_id")
-        account_id = kwargs.get("account_id")
-        budget_id = kwargs.get("budget_id")
+        to_id = kwargs.get("to_id")
+        from_id = kwargs.get("from_id")
 
-        category = Category.objects.filter(pk=category_id, user=user).first()
-        account = Account.objects.filter(pk=account_id, user=user).first()
-        budget = Budget.objects.filter(pk=budget_id, user=user).first()
-        if category is None and account is None and budget is None:
-            raise TransactionError
+        expense = transaction_data["type"] == "EXPENSE"
+        income = transaction_data["type"] == "INCOME"
+
+        if income:
+            to_account = Account.objects.get(pk=to_id)
+            from_account = Category.objects.get(pk=from_id)
+        elif expense:
+            to_account = Category.objects.get(pk=to_id)
+            from_account = Account.objects.get(pk=from_id)
+        else:
+            to_account = Account.objects.get(pk=to_id)
+            from_account = Account.objects.get(pk=from_id)
 
         transaction = Transaction(
             **transaction_data,
             user=user,
-            category=category,
-            account=account,
-            budget=budget,
+            to_account=to_account.id,
+            from_account=from_account.id,
         )
         success = True
         transaction.save()
