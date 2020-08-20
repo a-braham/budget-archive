@@ -3,28 +3,78 @@ import graphene
 from graphene_django import DjangoObjectType
 
 from .models import Category
+from budget.util.decorators import permissions_classes
+from budget.util.permissions import IsAuthenticated
 
-class CategoryType(DjangoObjectType):
-  class Meta:
-    model = Category
 
-class CategoryMutation(graphene.Mutation):
-  class Arguments:
+class CategoryInput(graphene.InputObjectType):
     name = graphene.String(required=True)
     description = graphene.String(required=False)
-    
-  success = graphene.Boolean()
-  category = graphene.Field(CategoryType)
+    type = graphene.String(required=True)
 
-  def mutate(self, info, name, description):
-    category = Category(
-      name=name,
-      description=description
-    )
-    success = True
-    category.save()
 
-    return CategoryMutation(category=category, success=success)
+class CategoryType(DjangoObjectType):
+    class Meta:
+        model = Category
+
+
+class CreateCategory(graphene.Mutation):
+    class Arguments:
+        category_data = CategoryInput(required=True)
+
+    success = graphene.Boolean()
+    category = graphene.Field(CategoryType)
+
+    @staticmethod
+    @permissions_classes([IsAuthenticated])
+    def mutate(self, info, category_data=None):
+        user = info.context.user or None
+        category = Category(**category_data, user=user)
+        success = True
+        category.save()
+
+        return CreateCategory(category=category, success=success)
+
+
+class UpdateCategory(graphene.Mutation):
+    class Arguments:
+        id = graphene.ID(required=True)
+        category_data = CategoryInput(required=True)
+
+    success = graphene.Boolean()
+    category = graphene.Field(CategoryType)
+
+    @staticmethod
+    @permissions_classes([IsAuthenticated])
+    def mutate(self, info, **kwargs):
+        category = Category.objects.get(pk=kwargs.get("id"))
+        category_data = kwargs.get("category_data")
+
+        for key, value in category_data.items():
+            setattr(category, key, value)
+        category.save()
+        success = True
+
+        return UpdateCategory(category=category, success=success)
+
+
+class QueryCategory(object):
+    all_categories = graphene.List(CategoryType)
+    category = graphene.Field(CategoryType, id=graphene.ID(required=False),)
+
+    @permissions_classes([IsAuthenticated])
+    def resolve_category(self, info, **kwargs):
+        id = kwargs.get("id")
+        if id is not None:
+            return Category.objects.get(pk=id)
+        return None
+
+    @permissions_classes([IsAuthenticated])
+    def resolve_all_categories(self, info, **kwargs):
+        user = info.context.user or None
+        return Category.objects.filter(user=user)
+
 
 class CategoryMutation(graphene.ObjectType):
-  create_category = CategoryMutation.Field()
+    create_category = CreateCategory.Field()
+    update_category = UpdateCategory.Field()

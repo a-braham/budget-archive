@@ -10,6 +10,7 @@ class Category(models.Model):
   """
 
     name = models.CharField(max_length=255, null=False, unique=True)
+    type = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=500, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

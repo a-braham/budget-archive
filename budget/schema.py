@@ -4,9 +4,9 @@ from graphql_auth.schema import UserQuery, MeQuery
 
 import budget.apps.authentication.schema
 import budget.apps.budget.scheme
-import budget.apps.categories.schema
 import budget.apps.accounts.schema
 import budget.apps.transactions.schema
+import budget.apps.categories.schema
 
 
 class Query(
@@ -15,6 +15,7 @@ class Query(
     graphene.ObjectType,
     budget.apps.accounts.schema.QueryAccount,
     budget.apps.transactions.schema.QueryTransaction,
+    budget.apps.categories.schema.QueryCategory,
 ):
     pass
 
@@ -22,9 +23,9 @@ class Query(
 class Mutation(
     budget.apps.authentication.schema.AuthMutation,
     budget.apps.budget.scheme.BudgetMutation,
-    budget.apps.categories.schema.CategoryMutation,
     budget.apps.accounts.schema.AccountMutation,
     budget.apps.transactions.schema.TransactionMutation,
+    budget.apps.categories.schema.CategoryMutation,
     graphene.ObjectType,
 ):
     pass
