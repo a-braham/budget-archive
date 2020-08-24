@@ -166,3 +166,65 @@ query {
   }
 }
 """
+
+CREATE_CATEGORY = """
+mutation CreateCategory($name: String!, $type: String!, $description: String!){
+  createCategory(
+    categoryData: {
+      name: $name, type: $type, description: $description
+      }
+    ){
+    success
+    category {
+      name,
+      type,
+      description,
+      user {
+        id,
+        username,
+        email,
+        phoneNumber
+      }
+    }
+  }
+}
+"""
+UPDATE_CATEGORY = """
+mutation UpdateCategory($id: ID!, $name: String!, $type: String!){
+  updateCategory(
+    id: $id,
+    categoryData: {
+      name: $name, type: $type
+      }
+    ){
+    success
+    category {
+      name,
+      type,
+      user {
+        id,
+        username,
+        email,
+        phoneNumber
+      }
+    }
+  }
+}
+"""
+ONE_CATEGORY = """
+query QueryCategory($id: ID!){
+  category(id: $id) {
+      name,
+      type
+  }
+}
+"""
+ALL_CATEGORIES = """
+query {
+  allCategories {
+    id,
+    name,
+    type
+  }
+}
+"""

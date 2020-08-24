@@ -7,16 +7,6 @@ User = get_user_model()
 
 
 class AuthTestCase(BaseTest):
-    def setUp(self):
-        super().setUp()
-
-        self.user = User.objects.create(
-            username="test_one",
-            email="test_one@gmail.com",
-            phone_number="+250780000001",
-            password="test#pa55",
-        )
-
     def test_create_user(self):
         self.snapshot(
             request_string=CREATE_USER,

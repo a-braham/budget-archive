@@ -40,7 +40,7 @@ snapshots['AccountTestCase::test_create_account_user_is_logged_in 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '2',
-                    'phoneNumber': '+250780000000',
+                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             },
@@ -86,7 +86,7 @@ snapshots['AccountTestCase::test_update_account 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '5',
-                    'phoneNumber': '+250780000000',
+                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             },

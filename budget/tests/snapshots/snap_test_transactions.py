@@ -17,8 +17,8 @@ snapshots['TransactionTestCase::test_create_transaction_expense 1'] = {
                 'type': 'EXPENSE',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '9',
-                    'phoneNumber': '+250780000000',
+                    'id': '14',
+                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             }
@@ -36,8 +36,8 @@ snapshots['TransactionTestCase::test_create_transaction_income 1'] = {
                 'type': 'INCOME',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '10',
-                    'phoneNumber': '+250780000000',
+                    'id': '15',
+                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             }
@@ -75,8 +75,8 @@ snapshots['TransactionTestCase::test_create_transaction_user_is_logged_in 1'] = 
                 'type': 'TRANSFER',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '12',
-                    'phoneNumber': '+250780000000',
+                    'id': '17',
+                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             }
@@ -88,7 +88,7 @@ snapshots['TransactionTestCase::test_get_all_transactions 1'] = {
     'data': {
         'allTransactions': [
             {
-                'id': '8',
+                'id': '20',
                 'reference': '987654321'
             }
         ]
@@ -117,8 +117,8 @@ snapshots['TransactionTestCase::test_update_transaction 1'] = {
                 'type': 'EXPENSE',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '15',
-                    'phoneNumber': '+250780000000',
+                    'id': '20',
+                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             }
