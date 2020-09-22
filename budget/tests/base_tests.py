@@ -8,8 +8,10 @@ from budget.schema import schema
 from budget.apps.accounts.models import Account
 from budget.apps.categories.models import Category
 from budget.apps.transactions.models import Transaction
+from budget.apps.budget.models import Budget
 
 User = get_user_model()
+
 
 class BaseTest(TestCase):
     """
@@ -28,11 +30,11 @@ class BaseTest(TestCase):
         )
 
         self.account = Account.objects.create(
-            name='TEST_CARD',
-            institution='TEST_BANK',
-            type='TEST_DEBIT',
-            number='987654321',
-            user=self.user
+            name="TEST_CARD",
+            institution="TEST_BANK",
+            type="TEST_DEBIT",
+            number="987654321",
+            user=self.user,
         )
 
         self.category = Category.objects.create(
@@ -48,6 +50,10 @@ class BaseTest(TestCase):
             from_account=self.account.id,
         )
 
+        self.budget = Budget.objects.create(
+            amount="10000", user=self.user, category=self.category,
+        )
+
     def snapshot(self, request_string, context=None, variables=None):
         if context is None:
             context = {}
@@ -56,13 +62,13 @@ class BaseTest(TestCase):
         graphql_response = self.client.execute(
             request_string,
             variables=variables,
-            context=self.generate_context(**context)
+            context=self.generate_context(**context),
         )
         self.assertMatchSnapshot(graphql_response)
 
     def generate_context(self, user=None, files=None):
         request = RequestFactory()
-        context_value = request.get('/graphql/')
+        context_value = request.get("/graphql/")
         context_value.user = user or AnonymousUser()
         self.__set_context_files(context_value, files)
         return context_value

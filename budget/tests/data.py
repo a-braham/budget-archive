@@ -228,3 +228,64 @@ query {
   }
 }
 """
+
+CREATE_BUDGET = """
+mutation CreateBudget($category: ID!, $amount: Decimal!){
+  createBudget(
+    categoryId: $category,
+    budgetData: {
+      amount: $amount
+      }
+    ){
+    success
+    budget {
+      id,
+      amount,
+      user {
+        id,
+        username,
+        email,
+        phoneNumber
+      }
+    }
+  }
+}
+"""
+UPDATE_BUDGET = """
+mutation UpdateBudget($id: ID!, $amount: Decimal!){
+  updateBudget(
+    budgetId: $id,
+    budgetData: {
+      amount: $amount
+      }
+    ){
+    success
+    budget {
+      id,
+      amount,
+      user {
+        id,
+        username,
+        email,
+        phoneNumber
+      }
+    }
+  }
+}
+"""
+ONE_BUDGET = """
+query QueryBudget($id: ID!){
+  budget(budgetId: $id) {
+      id,
+      amount
+  }
+}
+"""
+ALL_BUDGETS = """
+query {
+  allBudgets {
+    id,
+    amount
+  }
+}
+"""

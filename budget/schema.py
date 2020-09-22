@@ -16,6 +16,7 @@ class Query(
     budget.apps.accounts.schema.QueryAccount,
     budget.apps.transactions.schema.QueryTransaction,
     budget.apps.categories.schema.QueryCategory,
+    budget.apps.budget.scheme.QueryBudget,
 ):
     pass
 

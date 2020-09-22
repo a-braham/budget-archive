@@ -17,7 +17,7 @@ snapshots['TransactionTestCase::test_create_transaction_expense 1'] = {
                 'type': 'EXPENSE',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '14',
+                    'id': '19',
                     'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
@@ -36,7 +36,7 @@ snapshots['TransactionTestCase::test_create_transaction_income 1'] = {
                 'type': 'INCOME',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '15',
+                    'id': '20',
                     'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
@@ -75,7 +75,7 @@ snapshots['TransactionTestCase::test_create_transaction_user_is_logged_in 1'] = 
                 'type': 'TRANSFER',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '17',
+                    'id': '22',
                     'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
@@ -88,7 +88,7 @@ snapshots['TransactionTestCase::test_get_all_transactions 1'] = {
     'data': {
         'allTransactions': [
             {
-                'id': '20',
+                'id': '25',
                 'reference': '987654321'
             }
         ]
@@ -117,7 +117,7 @@ snapshots['TransactionTestCase::test_update_transaction 1'] = {
                 'type': 'EXPENSE',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '20',
+                    'id': '25',
                     'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
