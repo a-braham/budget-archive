@@ -16,7 +16,7 @@ snapshots['CategoryTestCase::test_create_category_user_is_logged_in 1'] = {
                 'type': 'EXPENSE',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '9',
+                    'id': '14',
                     'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
@@ -50,7 +50,7 @@ snapshots['CategoryTestCase::test_get_all_categories 1'] = {
     'data': {
         'allCategories': [
             {
-                'id': '11',
+                'id': '16',
                 'name': 'TEST_CATEGORY',
                 'type': ''
             }
@@ -75,7 +75,7 @@ snapshots['CategoryTestCase::test_update_category 1'] = {
                 'type': 'DEBIT',
                 'user': {
                     'email': 'test_one@gmail.com',
-                    'id': '13',
+                    'id': '18',
                     'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
