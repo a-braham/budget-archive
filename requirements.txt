@@ -36,7 +36,7 @@ pep8==1.7.1
 pluggy==0.13.1
 pre-commit==2.7.1
 promise==2.3
-psycopg2==2.8.5
+psycopg2==2.8.6
 py==1.9.0
 pycodestyle==2.6.0
 PyJWT==1.7.1
