@@ -50,7 +50,7 @@ Rx==3.1.1
 singledispatch==3.4.0.3
 six==1.15.0
 snapshottest==0.5.1
-sqlparse==0.3.1
+sqlparse==0.4.1
 termcolor==1.1.0
 toml==0.10.1
 typed-ast==1.4.1
