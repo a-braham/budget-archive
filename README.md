@@ -1,6 +1,6 @@
 # Budget - A personal financial plan.
 
-[![CircleCI](https://circleci.com/gh/a-braham/budget.svg?style=svg)](https://circleci.com/gh/a-braham/budget)
+[![CircleCI](https://circleci.com/gh/a-braham/budget.svg?style=shield)](https://circleci.com/gh/a-braham/budget)
 [![Maintainability](https://api.codeclimate.com/v1/badges/56d5a97b0331e38d4b67/maintainability)](https://codeclimate.com/github/a-braham/budget/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/a-braham/budget/badge.svg?branch=master)](https://coveralls.io/github/a-braham/budget?branch=master)
 
