@@ -25,7 +25,6 @@ class BaseTest(TestCase):
         self.user = User.objects.create(
             username="test_one",
             email="test_one@gmail.com",
-            phone_number="+250780000001",
             password="test#pa55",
         )
 
@@ -38,7 +37,8 @@ class BaseTest(TestCase):
         )
 
         self.category = Category.objects.create(
-            name="TEST_CATEGORY", user=self.user
+            name="TEST_CATEGORY",
+            user=self.user,
         )
 
         self.transaction = Transaction.objects.create(
@@ -51,7 +51,9 @@ class BaseTest(TestCase):
         )
 
         self.budget = Budget.objects.create(
-            amount="10000", user=self.user, category=self.category,
+            amount="10000",
+            user=self.user,
+            category=self.category,
         )
 
     def snapshot(self, request_string, context=None, variables=None):
