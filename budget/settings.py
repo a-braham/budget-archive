@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import environ
 from datetime import timedelta
+import cloudinary
 
 from django.core.exceptions import ImproperlyConfigured
 
@@ -19,15 +20,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env()
 env.read_env(env.str('ENV_PATH', BASE_DIR + '/.env'))
 
+
 def get_env(env_variable):
     try:
-      	return env(env_variable)
+        return env(env_variable)
     except KeyError:
-        error_msg = 'Set the {} environment variable in .env file'.format(env_variable)
+        error_msg = 'Set the {} environment variable in .env file'.format(
+            env_variable)
         raise ImproperlyConfigured(error_msg)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env('SECRET_KEY')
@@ -53,9 +57,9 @@ INSTALLED_APPS = [
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'graphql_auth',
     'django_filters',
+    'cloudinary',
 
     'budget.apps.authentication',
-    'budget.apps.profiles',
     'budget.apps.accounts',
     'budget.apps.budget',
     'budget.apps.categories',
@@ -88,7 +92,9 @@ AUTHENTICATION_BACKENDS = [
 
 GRAPHQL_AUTH = {
     'REGISTER_MUTATION_FIELDS': ['email', 'username', 'phone_number'],
-    'REGISTER_MUTATION_FIELDS_OPTIONAL': ['first_name', 'middle_name', 'last_name'],
+    'REGISTER_MUTATION_FIELDS_OPTIONAL': [
+        'first_name', 'middle_name', 'last_name', 'image',
+    ],
     'ALLOW_LOGIN_NOT_VERIFIED': False,
     'LOGIN_ALLOWED_FIELDS': ['email', 'username'],
 }
@@ -178,3 +184,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+cloudinary.config(
+    cloud_name=get_env('CLOUDINARY_CLOUD_NAME'),
+    api_key=get_env('CLOUDINARY_API_KEY'),
+    api_secret=get_env('CLOUDINARY_API_SECRET'),
+)
