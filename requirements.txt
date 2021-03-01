@@ -39,7 +39,7 @@ promise==2.3
 psycopg2==2.8.6
 py==1.10.0
 pycodestyle==2.6.0
-PyJWT==1.7.1
+PyJWT==2.0.1
 pylint==2.5.3
 pyparsing==2.4.7
 pytest==6.2.2
