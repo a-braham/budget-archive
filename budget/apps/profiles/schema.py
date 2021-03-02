@@ -2,8 +2,8 @@ import graphene
 
 from graphene_django import DjangoObjectType
 
-from budget.util.decorators import permissions_classes
-from budget.util.permissions import IsAuthenticated
+from budget.utils.decorators import permissions_classes
+from budget.utils.permissions import IsAuthenticated
 from .models import Profile
 
 
@@ -76,17 +76,11 @@ class QueryProfile(object):
     )
 
     @permissions_classes([IsAuthenticated])
-    def resolve_profile(self, info, **kwargs):
+    def resolve_profile(self, info):
         user = info.context.user or None
-        id = kwargs.get("id")
-        phone_number = kwargs.get("profile_number")
-
-        if id is not None:
-            return Profile.objects.get(pk=id, user=user)
-        if phone_number is not None:
-            return Profile.objects.get(number=phone_number, user=user)
-
-        return None
+        if user.is_anonymous:
+            raise Exception("Authentication Failure: Your must be signed in")
+        return user
 
 
 class ProfileMutation(graphene.ObjectType):

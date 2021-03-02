@@ -1,12 +1,13 @@
-from graphene_django import DjangoObjectType
+# from graphene_django import DjangoObjectType
 
-from .decorators import permissions_classes
+# from .decorators import permissions_classes
 
 
 class BasePermissions:
     """
     Class base permissions from which all permissions inherit
     """
+
     @staticmethod
     def has_permission(context):
         """
@@ -26,6 +27,7 @@ class IsAuthenticated(BasePermissions):
     """
     Allows access to authenticated users only
     """
+
     @staticmethod
     def has_permission(context):
         return context.user and context.user.is_authenticated
@@ -35,6 +37,7 @@ class AllowAny(BasePermissions):
     """
     Allow access to all
     """
+
     @staticmethod
     def has_permission(context):
         return True

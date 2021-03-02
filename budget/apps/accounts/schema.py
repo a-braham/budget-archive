@@ -3,8 +3,8 @@ import graphene
 from graphene_django import DjangoObjectType
 
 from .models import Account
-from budget.util.decorators import permissions_classes
-from budget.util.permissions import IsAuthenticated
+from budget.utils.decorators import permissions_classes
+from budget.utils.permissions import IsAuthenticated
 
 
 class AccountType(DjangoObjectType):
