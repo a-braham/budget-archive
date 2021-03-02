@@ -18,7 +18,6 @@ snapshots['TransactionTestCase::test_create_transaction_expense 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '19',
-                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             }
@@ -37,7 +36,6 @@ snapshots['TransactionTestCase::test_create_transaction_income 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '20',
-                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             }
@@ -54,7 +52,7 @@ snapshots['TransactionTestCase::test_create_transaction_user_is_anonymous 1'] = 
             'locations': [
                 {
                     'column': 3,
-                    'line': 3
+                    'line': 6
                 }
             ],
             'message': 'Permission Denied!',
@@ -76,7 +74,6 @@ snapshots['TransactionTestCase::test_create_transaction_user_is_logged_in 1'] = 
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '22',
-                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             }
@@ -118,7 +115,6 @@ snapshots['TransactionTestCase::test_update_transaction 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '25',
-                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             }

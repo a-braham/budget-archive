@@ -18,10 +18,6 @@ class CreateUser(graphene.Mutation):
     class Arguments:
         username = graphene.String(required=True)
         email = graphene.String(required=True)
-        phone_number = graphene.String(required=True)
-        first_name = graphene.String(required=False)
-        middle_name = graphene.String(required=False)
-        last_name = graphene.String(required=False)
         password = graphene.String(required=True)
 
     class Meta:

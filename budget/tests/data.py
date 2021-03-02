@@ -1,23 +1,14 @@
 CREATE_USER = """
 mutation CreateUser(
-  $email: String!, $username: String!,
-  $phone_number: String!, $first_name: String!,
-  $last_name: String!, $password: String!
+  $email: String!, $username: String!, $password: String!
   ){ register(
     email: $email,
     username: $username,
-    phoneNumber: $phone_number,
-    firstName: $first_name,
-    lastName: $last_name,
     password: $password
   ) {
     user {
       username,
       email,
-      phoneNumber,
-      firstName,
-      middleName,
-      lastName,
       isActive,
       isVerified,
     }
@@ -26,7 +17,9 @@ mutation CreateUser(
 """
 
 CREATE_MUTATION = """
-mutation CreateAccount($name: String!, $institution: String!, $type: String!, $number: String!){
+mutation CreateAccount(
+  $name: String!, $institution: String!, $type: String!, $number: String!
+  ){
   createAccount(
     accountData: {
       name: $name, institution: $institution, type: $type, number: $number
@@ -44,7 +37,6 @@ mutation CreateAccount($name: String!, $institution: String!, $type: String!, $n
         id,
         username,
         email,
-        phoneNumber
       }
     }
   }
@@ -52,7 +44,10 @@ mutation CreateAccount($name: String!, $institution: String!, $type: String!, $n
 """
 
 UPDATE_MUTATION = """
-mutation EditAccount($id: ID!, $name: String!, $institution: String!, $type: String!, $number: String!){
+mutation EditAccount(
+  $id: ID!, $name: String!, $institution: String!,
+  $type: String!, $number: String!
+  ){
   editAccount(
     id: $id,
     accountData: {
@@ -70,8 +65,7 @@ mutation EditAccount($id: ID!, $name: String!, $institution: String!, $type: Str
       user {
         id,
         username,
-        email,
-        phoneNumber
+        email
       }
     }
   }
@@ -101,7 +95,10 @@ query {
 """
 
 CREATE_TRANSACTION = """
-mutation CreateTransaction($from_account: ID!, $to_account: ID!, $reference: String!, $type: String!, $amount: Decimal!){
+mutation CreateTransaction(
+  $from_account: ID!, $to_account: ID!,
+  $reference: String!, $type: String!, $amount: Decimal!
+  ){
   createTransaction(
     fromId: $from_account,
     toId: $to_account,
@@ -117,15 +114,16 @@ mutation CreateTransaction($from_account: ID!, $to_account: ID!, $reference: Str
       user {
         id,
         username,
-        email,
-        phoneNumber
+        email
       }
     }
   }
 }
 """
 UPDATE_TRANSACTION = """
-mutation UpdateTransaction($id: ID!, $reference: String!, $type: String!, $amount: Decimal!){
+mutation UpdateTransaction(
+  $id: ID!, $reference: String!, $type: String!, $amount: Decimal!
+  ){
   updateTransaction(
     transactionId: $id,
     transactionData: {
@@ -140,8 +138,7 @@ mutation UpdateTransaction($id: ID!, $reference: String!, $type: String!, $amoun
       user {
         id,
         username,
-        email,
-        phoneNumber
+        email
       }
     }
   }
@@ -182,8 +179,7 @@ mutation CreateCategory($name: String!, $type: String!, $description: String!){
       user {
         id,
         username,
-        email,
-        phoneNumber
+        email
       }
     }
   }
@@ -204,8 +200,7 @@ mutation UpdateCategory($id: ID!, $name: String!, $type: String!){
       user {
         id,
         username,
-        email,
-        phoneNumber
+        email
       }
     }
   }
@@ -244,8 +239,7 @@ mutation CreateBudget($category: ID!, $amount: Decimal!){
       user {
         id,
         username,
-        email,
-        phoneNumber
+        email
       }
     }
   }
@@ -266,8 +260,7 @@ mutation UpdateBudget($id: ID!, $amount: Decimal!){
       user {
         id,
         username,
-        email,
-        phoneNumber
+        email
       }
     }
   }

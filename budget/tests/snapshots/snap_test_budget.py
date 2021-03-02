@@ -36,7 +36,6 @@ snapshots['BudgetTestCase::test_create_budget_user_is_logged_in 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '10',
-                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             },
@@ -74,7 +73,6 @@ snapshots['BudgetTestCase::test_update_budget 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '13',
-                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             },

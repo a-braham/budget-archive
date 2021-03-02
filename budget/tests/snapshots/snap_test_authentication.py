@@ -9,17 +9,22 @@ snapshots = Snapshot()
 
 snapshots['AuthTestCase::test_create_user 1'] = {
     'data': {
-        'register': {
-            'user': {
-                'email': 'test_user@budget.com',
-                'firstName': 'Test',
-                'isActive': False,
-                'isVerified': False,
-                'lastName': 'User',
-                'middleName': '',
-                'phoneNumber': '+250780000000',
-                'username': 'test_user'
-            }
+        'register': None
+    },
+    'errors': [
+        {
+            'locations': [
+                {
+                    'column': 6,
+                    'line': 4
+                }
+            ],
+            'message': '''duplicate key value violates unique constraint "profiles_phone_number_key"
+DETAIL:  Key (phone_number)=() already exists.
+''',
+            'path': [
+                'register'
+            ]
         }
-    }
+    ]
 }

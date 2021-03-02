@@ -17,7 +17,6 @@ snapshots['CategoryTestCase::test_create_category_user_is_logged_in 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '14',
-                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             },
@@ -76,7 +75,6 @@ snapshots['CategoryTestCase::test_update_category 1'] = {
                 'user': {
                     'email': 'test_one@gmail.com',
                     'id': '18',
-                    'phoneNumber': '+250780000001',
                     'username': 'test_one'
                 }
             },

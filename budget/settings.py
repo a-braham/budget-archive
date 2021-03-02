@@ -8,8 +8,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import environ
 from datetime import timedelta
+import environ
 import cloudinary
 
 from django.core.exceptions import ImproperlyConfigured
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'graphql_auth',
     'django_filters',
+    'cloudinary_storage',
     'cloudinary',
 
     'budget.apps.authentication',
@@ -64,6 +65,7 @@ INSTALLED_APPS = [
     'budget.apps.budget',
     'budget.apps.categories',
     'budget.apps.transactions',
+    'budget.apps.profiles',
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
@@ -91,10 +93,9 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 GRAPHQL_AUTH = {
-    'REGISTER_MUTATION_FIELDS': ['email', 'username', 'phone_number'],
-    'REGISTER_MUTATION_FIELDS_OPTIONAL': [
-        'first_name', 'middle_name', 'last_name', 'image',
-    ],
+    'REGISTER_MUTATION_FIELDS': ['email', 'username'],
+    'REGISTER_MUTATION_FIELDS_OPTIONAL': [],
+    'UPDATE_MUTATION_FIELDS': {},
     'ALLOW_LOGIN_NOT_VERIFIED': False,
     'LOGIN_ALLOWED_FIELDS': ['email', 'username'],
 }
@@ -184,6 +185,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/budget/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 cloudinary.config(
     cloud_name=get_env('CLOUDINARY_CLOUD_NAME'),
