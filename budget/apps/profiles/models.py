@@ -18,7 +18,12 @@ class Profile(models.Model):
         related_name="profile",
         on_delete=models.CASCADE,
     )
-    phone_number = models.CharField(max_length=128, blank=True, unique=True)
+    phone_number = models.CharField(
+        max_length=128,
+        blank=True,
+        null=True,
+        unique=True,
+    )
     first_name = models.CharField(max_length=255, blank=True)
     middle_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
