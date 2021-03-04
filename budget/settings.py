@@ -41,7 +41,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'the-budget-backend.herokuapp.com']
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Email Backends
+EMAIL_BACKEND = get_env('EMAIL_BACKEND')
+EMAIL_HOST = get_env('EMAIL_HOST')
+EMAIL_HOST_PASSWORD = get_env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = get_env('EMAIL_PORT')
+EMAIL_HOST_USER = get_env('EMAIL_HOST_USER')
+EMAIL_USE_TLS = get_env('EMAIL_USE_TLS')
 
 # Application definition
 
@@ -59,6 +65,7 @@ INSTALLED_APPS = [
     'django_filters',
     'cloudinary_storage',
     'cloudinary',
+    'rest_framework.authtoken',
 
     'budget.apps.authentication',
     'budget.apps.accounts',
@@ -101,10 +108,13 @@ GRAPHQL_AUTH = {
 }
 
 GRAPHQL_JWT = {
+    # 'JWT_PAYLOAD_HANDLER': 'app.utils.jwt_payload',
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
     'JWT_EXPIRATION_DELTA': timedelta(hours=24),
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_ALGORITHM': 'HS256',
     "JWT_ALLOW_ANY_CLASSES": [
         "graphql_auth.mutations.Register",
         "graphql_auth.mutations.VerifyAccount",
@@ -117,7 +127,7 @@ ROOT_URLCONF = 'budget.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'budget/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -193,3 +203,11 @@ cloudinary.config(
     api_key=get_env('CLOUDINARY_API_KEY'),
     api_secret=get_env('CLOUDINARY_API_SECRET'),
 )
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'budget/static')
+]
+
+DOMAIN = get_env("DOMAIN")
+VERIFICATION_URL = DOMAIN+'/api/users/activate/'
+DEFAULT_EMAIL = "Budget <noreply@budget.com>"

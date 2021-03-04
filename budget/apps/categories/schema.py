@@ -3,8 +3,8 @@ import graphene
 from graphene_django import DjangoObjectType
 
 from .models import Category
-from budget.util.decorators import permissions_classes
-from budget.util.permissions import IsAuthenticated
+from budget.utils.decorators import permissions_classes
+from budget.utils.permissions import IsAuthenticated
 
 
 class CategoryInput(graphene.InputObjectType):
@@ -60,7 +60,10 @@ class UpdateCategory(graphene.Mutation):
 
 class QueryCategory(object):
     all_categories = graphene.List(CategoryType)
-    category = graphene.Field(CategoryType, id=graphene.ID(required=False),)
+    category = graphene.Field(
+        CategoryType,
+        id=graphene.ID(required=False),
+    )
 
     @permissions_classes([IsAuthenticated])
     def resolve_category(self, info, **kwargs):
