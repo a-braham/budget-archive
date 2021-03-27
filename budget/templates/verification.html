@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Budget</title>
+    <style type="text/css" rel="stylesheet" media="all">
+        body {
+            width: 100% !important;
+            height: 100%;
+            margin: auto;
+            background-color: #F5F7F9 !important;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #F5F7F9;
+        }
+
+        .email-wrapper {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            right: 0px;
+            width: 550px;
+            padding: 0;
+        }
+
+        .email-content {
+            width: 80%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-masthead {
+            padding: 25px 0;
+            text-align: left;
+        }
+
+        .email-masthead-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #05D008;
+            text-decoration: none;
+            text-shadow: 0 1px 0 #F5F7F9;
+            margin-left: 5px;
+        }
+
+        .email-body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border-radius: 10px;
+            background-color: #FFFFFF;
+        }
+
+        .email-body-wrapper {
+            width: 570px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .email-footer {
+            width: 570px;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+        }
+
+        .email-footer p {
+            color: #839197;
+        }
+
+        .email-action {
+            width: 100%;
+            margin: 30px auto;
+            padding: 0;
+            text-align: center;
+        }
+
+        .body-footer {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #E7EAEC;
+        }
+
+        .content-cell {
+            padding: 35px;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        .white-section a {
+            color: white;
+        }
+
+        .section {
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .sub-footer {
+            margin-top: 10px;
+            border-top: 1px solid #E7EAEC;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #292E31;
+            font-size: 19px;
+            font-weight: bold;
+            text-align: left;
+            font-family: Open Sans;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #292E31;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            font-family: Open Sans;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #292E31;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+            font-family: Open Sans;
+        }
+
+        p {
+            margin-top: 0;
+            color: black;
+            font-size: 15px;
+            line-height: 1.5em;
+            text-align: left;
+            font-family: Open Sans;
+        }
+
+        .text-footer {
+            font-size: 16px;
+        }
+
+        p.sub {
+            font-size: 12px;
+        }
+
+        p.center {
+            text-align: center;
+        }
+
+        .text-color {
+            color: #839197;
+        }
+
+        .button {
+            display: inline-block;
+            width: 170px;
+            background-color: white;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 15px;
+            line-height: 45px;
+            text-align: center;
+            font-size: 17px;
+            text-decoration: none;
+            -webkit-text-size-adjust: none;
+            mso-hide: all;
+        }
+
+        .button--green {
+            background-color: #68cc04;
+            color: #fff !important;
+            font-size: 15px !important;
+        }
+
+        .button--red {
+            background-color: red;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .button--blue {
+            background-color: dodgerblue;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        hr {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            height: 0.1px;
+            border-width: 0;
+            color: #E7EAEC;
+            background-color: #E7EAEC;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            .email-body_inner,
+            .email-footer {
+                width: 100% !important;
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .button {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="email-wrapper">
+            <table class="email-content">
+                <tr>
+                    <td class="email-masthead">
+                        <a class="email-masthead-name">Budget.</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="email-body">
+                        <table class="email-body-wrapper">
+                            <tr>
+                                <td class="content-cell">
+                                    <h1 class="text-color">Hello,</h1>
+                                    <p class="text-color">Please click on the button to verify your email address:</p>
+                                    <table class="email-action">
+                                        <tr>
+                                            <td>
+                                                <div class="section">
+                                                    <a href="#" class="button button--green link">Verify Now</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p class="text-color">This verification is only valid for the next 24 hours, so be
+                                        sure to use it right away.</p>
+                                    <p class="text-color">If you didn't try to verify your email then ignore this email.
+                                    </p>
+                                    <table class="body-footer">
+                                        <tr>
+                                            <td>
+                                                <p class="sub text-color">If you’re having trouble clicking the
+                                                    verification button, copy and paste the URL below into your web
+                                                    browser.</p>
+                                                <p class="sub"><a
+                                                        href="#">sandbox068984960ac34d6980249b573331ab42.mailgun.org</a>
+                                                </p>
+
+                                                <p class="text-color">Enjoy budgeting!</p>
+                                            </td>
+                                        </tr>
+                                        <hr>
+                                        <tr class="sub-footer">
+                                            <td>
+                                                <p class="text-color text-footer">Cheers,<br>Budget.</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="email-footer">
+                            <tr>
+                                <td class="content-cell">
+                                    <p class="sub center">You received this email because you have registered an
+                                        account on budget.com
+                                        website.
+                                    </p>
+                                    <p class="sub center">This is a transactional email, you cannot unsubscribe
+                                        from it.</p>
+                                    <p class="sub center">Budget, Inc., KN 134 Street Biryogo, Nyarugenge.
+                                        Kigali-20009, Rwanda</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

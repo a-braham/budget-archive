@@ -18,7 +18,7 @@ class VerificationMail:
         Compose the email
         """
         html_body = render_to_string(
-            template_name="base.html",
+            template_name="verification.html",
             context={
                 "name": self.user.username,
                 "url": settings.VERIFICATION_URL + self.token,

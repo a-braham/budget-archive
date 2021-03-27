@@ -127,7 +127,7 @@ ROOT_URLCONF = 'budget.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'budget/templates')],
+        'DIRS': [os.path.join(os.path.dirname(__file__), 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -195,7 +195,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/budget/'
+
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(__file__), 'static/')
+]
+
+MEDIA_URL = 'budget/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 cloudinary.config(
@@ -203,10 +208,6 @@ cloudinary.config(
     api_key=get_env('CLOUDINARY_API_KEY'),
     api_secret=get_env('CLOUDINARY_API_SECRET'),
 )
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'budget/static')
-]
 
 DOMAIN = get_env("DOMAIN")
 VERIFICATION_URL = DOMAIN+'/api/users/activate/'
