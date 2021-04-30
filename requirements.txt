@@ -68,7 +68,7 @@ toml==0.10.1
 typed-ast==1.4.1
 Unidecode==1.1.2
 urllib3==1.25.11
-virtualenv==20.0.31
+virtualenv==20.4.4
 wasmer==0.4.1
 wcwidth==0.2.5
 whitenoise==5.2.0
