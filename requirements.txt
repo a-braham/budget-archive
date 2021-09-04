@@ -24,7 +24,7 @@ djangorestframework==3.12.4
 docopt==0.6.2
 fastdiff==0.2.0
 filelock==3.0.12
-flake8==3.8.4
+flake8==3.9.2
 graphene==2.1.8
 graphene-django==2.12.1
 graphql-core==2.3.2
@@ -45,7 +45,7 @@ Pillow==8.2.0
 pluggy==0.13.1
 pre-commit==2.7.1
 promise==2.3
-psycopg2==2.8.6
+psycopg2==2.9.1
 py==1.10.0
 pycodestyle==2.7.0
 pyflakes==2.3.1
