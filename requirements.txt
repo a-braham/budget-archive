@@ -71,6 +71,6 @@ urllib3==1.26.5
 virtualenv==20.7.2
 wasmer==0.4.1
 wcwidth==0.2.5
-whitenoise==5.2.0
+whitenoise==5.3.0
 wrapt==1.12.1
 zipp==3.5.0
