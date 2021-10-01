@@ -17,7 +17,7 @@ Django==3.1.12
 django-cloudinary-storage==0.3.0
 django-environ==0.6.0
 django-filter==2.4.0
-django-graphql-auth==0.3.11
+django-graphql-auth==0.3.16
 django-graphql-jwt==0.3.0
 django-heroku==0.3.1
 djangorestframework==3.12.4
