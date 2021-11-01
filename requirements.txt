@@ -30,7 +30,7 @@ graphene-django==2.12.1
 graphql-core==2.3.2
 graphql-relay==2.0.1
 gunicorn==20.1.0
-identify==1.4.25
+identify==2.3.3
 idna==3.2
 importlib-metadata==4.0.1
 iniconfig==1.1.1
