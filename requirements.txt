@@ -23,7 +23,7 @@ django-heroku==0.3.1
 djangorestframework==3.12.4
 docopt==0.6.2
 fastdiff==0.3.0
-filelock==3.4.0
+filelock==3.6.0
 flake8==3.9.2
 graphene==3.0
 graphene-django==2.12.1
